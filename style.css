@@ -135,17 +135,17 @@ li{
 	width:200%;
 	height:200%;
 	text-align:center;
-
-	padding-top:1.7rem;
+	padding-top:2.2rem;
 	font-weight:600;
 	color:white;
-	font-size:clamp(14px,2.2vmin,20px);
+	font-size: clamp(12px, 1.9vmin, 18px);
 }
 
 .text b{
-	max-width:20%;
+	max-width:60%;
 	display:inline-block;
 	word-break:break-word;
+	line-height:1.2;
 }
 
 /* ===== MÀU Ô ===== */
