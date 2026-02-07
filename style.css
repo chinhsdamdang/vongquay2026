@@ -1,0 +1,351 @@
+:root{
+   --size-wheel: min(55vmin, 420px);
+}
+
+html{
+	box-sizing:border-box;
+	height:100%;
+	overflow-x:hidden;
+}
+
+body{
+    font-family:'Be Vietnam Pro', sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-image:url("background.jpg");
+    background-size:contain;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-color:#fff5e6;
+}
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+/* ===== VÒNG QUAY ===== */
+ul{
+	position:relative;
+	margin:1rem 0;
+
+	width:var(--size-wheel);
+	height:var(--size-wheel);
+
+	border:14px solid transparent;
+	border-radius:50%;
+	list-style:none;
+	overflow:hidden;
+
+	background:
+	linear-gradient(white,white) padding-box,
+	linear-gradient(45deg,#ffd700,#ffae00,#ffd700,#fff3a0,#ffd700) border-box;
+
+	box-shadow:
+	0 0 15px rgba(255,215,0,0.9),
+	inset 0 0 10px rgba(255,255,255,0.8);
+
+	transition:cubic-bezier(0.075,0.8,0.2,1) 7s;
+}
+
+/* ===== BÓNG ĐÈN ===== */
+ul::before{
+	content:"";
+	position:absolute;
+	inset:-22px;
+	border-radius:50%;
+
+	background:repeating-radial-gradient(
+		circle,
+		#ffe066 0 6px,
+		#ffcc00 7px 9px,
+		transparent 10px 28px
+	);
+
+	filter:drop-shadow(0 0 6px gold);
+	animation:blink 1s linear infinite;
+	pointer-events:none;
+}
+
+@keyframes blink{
+	0%{filter:drop-shadow(0 0 4px gold);}
+	50%{filter:drop-shadow(0 0 12px gold);}
+	100%{filter:drop-shadow(0 0 4px gold);}
+}
+
+/* ===== KHUNG GIỮ VÒNG ===== */
+span{
+	position:relative;
+	display:inline-block;
+	z-index:1;
+}
+
+/* ===== MŨI TÊN ===== */
+span::before{
+	content:'';
+	position:absolute;
+	top:-18px;
+	left:50%;
+	transform:translateX(-50%);
+
+	border-left:2rem solid transparent;
+	border-right:2rem solid transparent;
+	border-top:4rem solid #ffd700;
+
+	z-index:2;
+	animation:arrow .6s ease-out infinite;
+}
+
+@keyframes arrow{
+	0%{top:-22px;}
+	80%{top:-18px;}
+	100%{top:-22px;}
+}
+
+span::after{
+	content:'';
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:2rem;
+	height:2rem;
+	background:white;
+	border-radius:50%;
+}
+
+/* ===== Ô QUAY ===== */
+li{
+	position:absolute;
+	top:0;
+	right:0;
+	width:50%;
+	height:50%;
+	transform-origin:0% 100%;
+	overflow:hidden;
+}
+
+.text{
+	position:absolute;
+	left:-100%;
+	width:200%;
+	height:200%;
+	text-align:center;
+
+	padding-top:1.7rem;
+	font-weight:600;
+	color:white;
+	font-size:clamp(14px,2.2vmin,20px);
+}
+
+.text b{
+	max-width:20%;
+	display:inline-block;
+	word-break:break-word;
+}
+
+/* ===== MÀU Ô ===== */
+.wheel li:nth-child(1) .text{background:#ff4d4d;}
+.wheel li:nth-child(2) .text{background:#ff9933;}
+.wheel li:nth-child(4) .text{background:#33cc33;}
+.wheel li:nth-child(5) .text{background:#33cccc;}
+.wheel li:nth-child(6) .text{background:#3366ff;}
+
+/* ===== Ô VIP ===== */
+.wheel li:nth-child(3) .text{
+	background:linear-gradient(45deg,#ffd700,#fff3a0,#ffd700);
+	color:#b30000;
+	border:3px solid gold;
+	box-shadow:0 0 15px gold;
+}
+
+.wheel li:nth-child(7) .text{
+	background:linear-gradient(45deg,#ff66cc,#ff99dd);
+	border:3px solid #ffccff;
+	box-shadow:0 0 15px #ff66cc;
+}
+
+/* ===== LẤP LÁNH ===== */
+@keyframes sparkle{
+	0%{filter:brightness(1);}
+	50%{filter:brightness(1.4);}
+	100%{filter:brightness(1);}
+}
+
+.wheel li:nth-child(3) .text,
+.wheel li:nth-child(7) .text{
+	animation:sparkle 1s infinite;
+}
+
+.wheel li:nth-child(3) .text::after,
+.wheel li:nth-child(7) .text::after{
+	content:"✨";
+	position:absolute;
+	top:10px;
+	right:20px;
+	font-size:20px;
+	animation:sparkleMove 1.5s infinite;
+}
+
+@keyframes sparkleMove{
+	0%{opacity:0; transform:scale(.5);}
+	50%{opacity:1; transform:scale(1.2);}
+	100%{opacity:0; transform:scale(.5);}
+}
+
+/* ===== LAYOUT ===== */
+.main{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	padding:20px 0;
+}
+
+/* ===== NÚT ===== */
+button{
+    border:none;
+
+    /* màu Tết đỏ vàng */
+    background:linear-gradient(45deg,#c40000,#ff2e2e,#ff5a5a);
+
+    color:#fff;
+    font-size:clamp(18px,3vmin,26px);
+    padding:12px 34px;
+
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:bold;
+
+    /* hiệu ứng nổi */
+    box-shadow:
+        0 6px 0 #a30000,
+        0 0 15px gold;
+
+    transition:0.2s;
+}
+
+/* Hover */
+button:hover{
+    transform:translateY(-2px) scale(1.05);
+    box-shadow:
+        0 8px 0 #a30000,
+        0 0 20px gold;
+}
+
+/* Nhấn xuống */
+button:active{
+    transform:translateY(4px);
+    box-shadow:
+        0 2px 0 #a30000,
+        0 0 10px gold;
+}
+
+
+button:hover{
+	transform:scale(1.05);
+	opacity:.8;
+}
+
+/* ===== POPUP ===== */
+.popup{
+	display:none;
+	position:fixed;
+	inset:0;
+	background:rgba(0,0,0,.6);
+	justify-content:center;
+	align-items:center;
+	z-index:9999;
+}
+
+.popup-content{
+	background:url("popup-bg.jpg") no-repeat center;
+	background-size:cover;
+
+	padding:30px;
+	border-radius:15px;
+	text-align:center;
+	position:relative;
+	animation:popIn .4s ease;
+
+	width:90%;
+	max-width:420px;
+	color:white;
+
+	box-shadow:
+	0 0 25px gold,
+	inset 0 0 20px rgba(255,215,0,.5);
+}
+
+.popup-content img{
+	width:60%;
+	max-width:220px;
+	height:auto;
+	object-fit:contain;
+	margin-top:20px;
+	filter:drop-shadow(0 0 15px gold);
+}
+
+.close{
+	position:absolute;
+	top:-15px;
+	right:-15px;
+
+	width:45px;
+	height:45px;
+
+	background:linear-gradient(45deg,#ff0000,#ff4d4d);
+	color:white;
+	border-radius:50%;
+	font-size:26px;
+	cursor:pointer;
+
+	display:flex;
+	align-items:center;
+	justify-content:center;
+
+	box-shadow:0 0 12px gold;
+}
+
+@keyframes popIn{
+	from{transform:scale(.5);opacity:0;}
+	to{transform:scale(1);opacity:1;}
+}
+
+#popupText{
+	color:#FFD700;
+	font-size:26px;
+	font-weight:bold;
+	text-shadow:
+	0 0 5px #000,
+	0 0 10px #000,
+	0 0 15px #ff0000;
+}
+
+/* ===== ICON QUÀ (FIX LỖI BÔNG TẨY TRANG) ===== */
+.gift-img{
+	width:48px;
+	height:48px;
+	object-fit:contain;
+	display:block;
+	margin:0 auto 5px;
+	filter:drop-shadow(0 0 6px gold);
+	pointer-events:none;
+}
+
+/* Ô VIP to hơn chút */
+.wheel li:nth-child(3) .gift-img,
+.wheel li:nth-child(7) .gift-img{
+	width:60px;
+	height:60px;
+	filter:drop-shadow(0 0 12px gold);
+}
+
+/* FIX RIÊNG BÔNG TẨY TRANG */
+.wheel li:nth-child(5) .gift-img{
+	width:42px;
+	height:42px;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="viewport" 
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>Vòng quay may mắn</title>
+
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@500;600&subset=vietnamese" rel="stylesheet">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+	<main>
+		<section class="main">
+
+			<!-- Vòng quay -->
+			<span>
+				<ul class="wheel"></ul>
+			</span>
+
+			<!-- Nút quay -->
+			<button class="btn--wheel">Quay thưởng</button>
+
+		</section>
+	</main>
+
+
+	<!-- Âm thanh quay -->
+	<audio id="spinSound" preload="auto">
+		<source src="spin.mp3" type="audio/mpeg">
+	</audio>
+
+	<audio id="winSound" preload="auto">
+  <source src="win-sound.mp3" type="audio/mpeg">
+</audio>
+
+	<!-- POPUP TRÚNG THƯỞNG -->
+	<div id="resultPopup" class="popup">
+
+		<div class="popup-content">
+
+			<!-- Nút đóng X -->
+			<button id="closePopup" class="close">&times;</button>
+
+			<!-- Nội dung -->
+			<h2 id="popupText">Chúc mừng!</h2>
+
+			<img id="popupImg" src="" alt="Phần thưởng">
+
+		</div>
+
+	</div>
+
+	<!-- JS -->
+	<script src="./main.js"></script>
+
+</body>
+</html>
