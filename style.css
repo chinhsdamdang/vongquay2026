@@ -142,10 +142,14 @@ li{
 }
 
 .text b{
-	max-width:60%;
-	display:inline-block;
+	display:block;
+	width:70%;
+	margin:0 auto;
+	white-space:normal;      /* QUAN TRỌNG */
+	word-wrap:break-word;
 	word-break:break-word;
-	line-height:1.2;
+	line-height:1.25;
+	text-align:center;
 }
 
 /* ===== MÀU Ô ===== */
