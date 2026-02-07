@@ -8,7 +8,6 @@
 	const wheel = $('.wheel');
 	const btnWheel = $('.btn--wheel');
 
-
 	const popup = document.getElementById("resultPopup");
 	const popupText = document.getElementById("popupText");
 	const popupImg = document.getElementById("popupImg");
@@ -19,6 +18,17 @@
 
 	// 👉 thời gian quay CSS = 10s
 	wheel.style.transition = "transform 10s cubic-bezier(0.075,0.8,0.2,1)";
+
+	// 🔓 UNLOCK AUDIO FOR IOS
+	const unlockAudio = () => {
+		if(winSound){
+			winSound.play().then(()=>{
+				winSound.pause();
+				winSound.currentTime = 0;
+			}).catch(()=>{});
+		}
+	};
+	document.addEventListener("touchstart", unlockAudio, { once:true });
 
 	const listGift = [
 		{ text: 'Mặt nạ', percent: 95.8/100 },
@@ -31,14 +41,14 @@
 	];
 
 	const giftImages = {
-	"Mặt nạ":"matna.png",
-	"Son":"son.png",
-	"1 chỉ vàng":"vang.png",
-	"500k":"500k.png",
-	"Bông tẩy trang":"bongtaytrang.png",
-	"Bảng mắt":"bangmat.png",
-	"Nước hoa YSL":"ysl.png"
-};
+		"Mặt nạ":"matna.png",
+		"Son":"son.png",
+		"1 chỉ vàng":"vang.png",
+		"500k":"500k.png",
+		"Bông tẩy trang":"bongtaytrang.png",
+		"Bảng mắt":"bangmat.png",
+		"Nước hoa YSL":"ysl.png"
+	};
 
 	const size = listGift.length;
 	const rotate = 360/size;
@@ -61,7 +71,6 @@ class="text ${index%2?'text-2':'text-1'}">
 
 </p>`;
 
-
 		wheel.appendChild(elm);
 	});
 
@@ -70,8 +79,10 @@ class="text ${index%2?'text-2':'text-1'}">
 		isRotating = true;
 
 		// 🔊 nhạc quay
-		spinSound.currentTime = 0;
-		spinSound.play().catch(()=>{});
+		if(spinSound){
+			spinSound.currentTime = 0;
+			spinSound.play().catch(()=>{});
+		}
 
 		const random = Math.random();
 		const gift = getGift(random);
@@ -105,41 +116,47 @@ class="text ${index%2?'text-2':'text-1'}">
 
 	// HIỆN QUÀ
 	const showGift = gift => {
-    let timer = setTimeout(() => {
+		let timer = setTimeout(() => {
 
-        isRotating = false;
+			isRotating = false;
 
-        // 🛑 DỪNG NHẠC QUAY
-        if(spinSound){
-            spinSound.pause();
-            spinSound.currentTime = 0;
-        }
+			// 🛑 DỪNG NHẠC QUAY
+			if(spinSound){
+				spinSound.pause();
+				spinSound.currentTime = 0;
+			}
 
-        // 🎉 HIỆN POPUP
-        popup.style.display = "flex";
+			// 🎉 HIỆN POPUP
+			popup.style.display = "flex";
 
-        // TEXT
-        popupText.innerText =
-          "🎉 Chúc mừng bạn trúng: " + gift.text;
+			popupText.innerText =
+			  "🎉 Chúc mừng bạn trúng: " + gift.text;
 
-        // ẢNH
-        popupImg.src = giftImages[gift.text];
+			popupImg.src = giftImages[gift.text];
 
-        // 🔊 NHẠC WIN
-        if(winSound){
-            winSound.pause();
-            winSound.currentTime = 0;
-            winSound.play().catch(()=>{});
-        }
+			// 🔊 NHẠC WIN
+			if(winSound){
+				winSound.pause();
+				winSound.currentTime = 0;
+				winSound.play().catch(()=>{});
+			}
 
-        clearTimeout(timer);
+			clearTimeout(timer);
 
-    }, timeRotate);
-};
-
+		}, timeRotate);
+	};
 
 	// CLICK QUAY
 	btnWheel.addEventListener('click',()=>{
+
+		// unlock audio khi click
+		if(winSound){
+			winSound.play().then(()=>{
+				winSound.pause();
+				winSound.currentTime = 0;
+			}).catch(()=>{});
+		}
+
 		!isRotating && start();
 	});
 
