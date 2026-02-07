@@ -129,35 +129,33 @@ li{
 	overflow:hidden;
 }
 
+/* ===== TEXT TRONG Ô ===== */
 .text{
-    position:absolute;
-    left:-100%;
-    width:200%;
-    height:200%;
+	position:absolute;
+	left:-100%;
+	width:200%;
+	height:200%;
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+	text-align:center;
 
-    text-align:center;
-    padding-top:0; /* bỏ padding gây lệch */
+	/* Đẩy chữ ra mép ngoài */
+	padding-top:1.6rem;
 
-    font-weight:600;
-    color:white;
-    font-size: clamp(12px,2vmin,16px);
+	font-weight:600;
+	color:white;
+	font-size:clamp(11px,1.9vmin,16px);
 }
 
+/* Tên quà */
 .text b{
-    display:block;
-    width:55%;          /* giảm để không chạm mép */
-    margin:4px auto 0;
+	display:block;
+	width:62%;
+	margin:4px auto 0;
 
-    white-space:normal;
-    word-break:break-word;
-    line-height:1.15;
-
-    text-align:center;
+	white-space:normal;
+	word-break:break-word;
+	line-height:1.15;
+	text-align:center;
 }
 
 /* ===== MÀU Ô ===== */
@@ -220,19 +218,14 @@ li{
 /* ===== NÚT ===== */
 button{
     border:none;
-
-    /* màu Tết đỏ vàng */
     background:linear-gradient(45deg,#c40000,#ff2e2e,#ff5a5a);
-
     color:#fff;
     font-size:clamp(18px,3vmin,26px);
     padding:12px 34px;
-
     border-radius:50px;
     cursor:pointer;
     font-weight:bold;
 
-    /* hiệu ứng nổi */
     box-shadow:
         0 6px 0 #a30000,
         0 0 15px gold;
@@ -240,7 +233,6 @@ button{
     transition:0.2s;
 }
 
-/* Hover */
 button:hover{
     transform:translateY(-2px) scale(1.05);
     box-shadow:
@@ -248,18 +240,11 @@ button:hover{
         0 0 20px gold;
 }
 
-/* Nhấn xuống */
 button:active{
     transform:translateY(4px);
     box-shadow:
         0 2px 0 #a30000,
         0 0 10px gold;
-}
-
-
-button:hover{
-	transform:scale(1.05);
-	opacity:.8;
 }
 
 /* ===== POPUP ===== */
@@ -295,7 +280,6 @@ button:hover{
 .popup-content img{
 	width:60%;
 	max-width:220px;
-	height:auto;
 	object-fit:contain;
 	margin-top:20px;
 	filter:drop-shadow(0 0 15px gold);
@@ -305,20 +289,16 @@ button:hover{
 	position:absolute;
 	top:-15px;
 	right:-15px;
-
 	width:45px;
 	height:45px;
-
 	background:linear-gradient(45deg,#ff0000,#ff4d4d);
 	color:white;
 	border-radius:50%;
 	font-size:26px;
 	cursor:pointer;
-
 	display:flex;
 	align-items:center;
 	justify-content:center;
-
 	box-shadow:0 0 12px gold;
 }
 
@@ -337,27 +317,24 @@ button:hover{
 	0 0 15px #ff0000;
 }
 
-/* ===== ICON QUÀ (FIX LỖI BÔNG TẨY TRANG) ===== */
+/* ===== ICON QUÀ ===== */
 .gift-img{
-	width:48px;
-	height:48px;
+	width:44px;
+	height:44px;
 	object-fit:contain;
 	display:block;
-	margin:0 auto 5px;
+	margin:0 auto 4px;
 	filter:drop-shadow(0 0 6px gold);
 	pointer-events:none;
 }
 
-/* Ô VIP to hơn chút */
 .wheel li:nth-child(3) .gift-img,
 .wheel li:nth-child(7) .gift-img{
-	width:60px;
-	height:60px;
-	filter:drop-shadow(0 0 12px gold);
+	width:56px;
+	height:56px;
 }
 
-/* FIX RIÊNG BÔNG TẨY TRANG */
 .wheel li:nth-child(5) .gift-img{
-	width:42px;
-	height:42px;
+	width:38px;
+	height:38px;
 }
